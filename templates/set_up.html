@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block set_up_active %} active {% endblock %}
+
+{% block body %}
+
+
+  <br>
+  <h2>Enter each question the residents may answer.</h2>
+  <br>
+  <hr>
+  <br>
+
+  <p> The questions will appear exactly as you type them. <br>
+      Questions should be separated by a new line (enter key). <br>
+      Blank lines and spaces on either end will be ignored. </p>
+
+  <form action="{{ url_for('questions_in') }}" method="post">
+    <textarea name="resident_questions" id="textarea1" cols="60" rows="10">{% for q in range(len) %}{{ questions[q] }}
+{% endfor %}
+    </textarea> <br>
+    <button type="submit" class="btn btn-primary">Next</button>
+  </form>
+
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+after getting resident config stuff from second setup phase, store the following for later use:
+for each question:
+    question
+    required
+    single/multiple answers
+    short answer
+    answers
+
+also keep the 'meta' stuff, like if they want age, gender, ID number, etc.
+store these things in a standardized format in a database - like Firebase
+
+then configure the buildings
+    building names
+    rooms available
+        people per room
+        requirements - age, gender, match strength
+    requirements - age, gender, match strength
+    
+
+
+* QUESTION * - leave it up to the user? - makes it more difficult
+do you pair up roommates first, then place them into a building
+or
+do you place residents in buildings first, then match them to a roommate
+
+
+
+matching
+    create pools of residents - 2^n : n is the number of 'must haves' for each match
+        rank the 'must haves' to allow breaking of rules when the pools are nearly empty
+    from each pool
+        pair the highest match score together and remove them from the pool
+        repeat until either 0 or 1 resident(s) remain(s)
+
+placing into a building
+    require user to provide an order in which to attempt to place a resident/match 
+    attempt to place them into each building in the list in order until an opening is found
+    require user to provide a solution should the algo not find a place to put a resident/match
+
+
+
+    sample questions
+What is your name?
+What is your quest?
+What is your favorite color?
+What is the average air speed velocity of an unladen swallow?

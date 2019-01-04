@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block set_up_active %} active {% endblock %}
+
+{% block body %}
+
+  <br>
+  <h2>Now you will provide all possible answers for your questions.</h2>
+  <h2>Options include:</h2>
+  <ul>
+      <li>
+        <h3>Required/Not Required</h3>
+      </li>
+      <li>
+        <h3>Single or Multiple Choice</h3>
+      </li>
+      <li>
+        <h3>Short Answer</h3>
+      </li>
+  </ul>
+  <hr>
+
+  <form action="{{ url_for('answers_in') }}" method="post">
+
+    <h4>Before you give answers to your questions, which, if any, of the following information will be collected about the residents?</h4>
+    
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="get_name" id="get_name">
+      <label class="form-check-label" for="get_name">Name</label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="get_id" id="get_id">
+      <label class="form-check-label" for="get_id">ID Number</label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="get_gender" id="get_gender">
+      <label class="form-check-label" for="get_gender">Gender</label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="get_age" id="get_age">
+      <label class="form-check-label" for="get_age">Age</label>
+    </div>
+    <br>
+
+    {% for q in range(len) %}
+    <hr>
+    <h4>{{ questions[q] }}</h4>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="req{{ q }}" id="req{{ q }}">
+      <label class="form-check-label" for="req{{ q }}">Required</label>
+    </div>
+    
+    <div class="form-group">
+        <input type="radio" class="form-radio-input" value="single" name="choice{{ q }}" id="sing{{ q }}"> 
+        <label for="sing{{ q }}">Single Choice</label>
+    </div>
+    
+    <div class="form-group">
+        <input type="radio" class="form-radio-input" value="multiple" name="choice{{ q }}" id="mult{{ q }}"> 
+        <label for="mult{{ q }}">Multiple Choice</label>
+    </div>
+
+    <div class="form-group" style="height: auto;">
+      <label for="textarea{{ q }}">Answers</label>
+      <textarea class="form-control" name="ans{{ q }}" id="ans{{ q }}" rows="3"></textarea>
+    </div>
+    
+    {% endfor %}
+
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary" value="Next">
+    </div>
+
+  </form>
+
+
+{% endblock %}

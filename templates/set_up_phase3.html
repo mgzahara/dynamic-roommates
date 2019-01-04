@@ -1,0 +1,35 @@
+{% extends 'layout.html' %} {% block set_up_active %} active {% endblock %} 
+{% block body %}
+
+    <br />
+    <h2>Please review the following questions and potential answers.</h2>
+    <br />
+    <h2>changes may be made by going back to the previous page.</h2>
+    <hr />
+
+    <p>name : {{ meta.get("name") }}</p>
+    <p>gender : {{ meta.get("gender") }}</p>
+    <p>age : {{ meta.get("age") }}</p>
+    <p>id : {{ meta.get("id") }}</p>
+
+    {% for i in range(questions | length) %}
+
+        <hr>
+        <p>{{ i + 1 }} : {{ questions[i] }} {% if specs[i].get("req"): %} * {% endif %}</p>
+        <hr>
+
+        {% if specs[i].get("single_choice"): %}
+            <p>single choice</p>
+        {% else %}
+            <p>multiple choice</p>
+        {% endif %}
+
+        {% for q in range(specs[i].get("ans") | length) %}
+
+            <p class="answer">{{ specs[i].get("ans")[q] }}</p>
+
+        {% endfor %} 
+
+    {% endfor %} 
+
+{% endblock %}
